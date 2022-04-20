@@ -1,0 +1,63 @@
+:root
+{
+    --year-nav: 280px;
+}
+
+.year-section
+{
+    position: relative;
+    height: 20000px;
+}
+
+.year-section__container
+{
+    height: 56px;
+
+    display: grid;
+    grid-template-columns: var(--year-nav) 1fr;
+    align-items: center;
+
+    text-align: center;
+    background: white;
+
+    position: sticky;
+    top: 169px;
+}
+
+.year-section__year
+{
+    min-width: var(--year-nav);
+
+    grid-column-start: 1;
+    grid-row-start: 1;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 94px;
+
+    transition: transform 0.7s ease 0.1s;
+}
+
+.year-section__line
+{
+    width: 100%;
+    border: none;
+    border-top: 10px solid #000000;
+
+    margin: 0;
+    transition: width 2s ease;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    .year-section__container
+    {
+        background: #191919;
+    }
+
+    .year-section__year, .year-section__line
+    {
+        border-color: #ffffff;
+    }
+}

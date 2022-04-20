@@ -1,0 +1,43 @@
+:root
+{
+    --year-nav: 280px;
+}
+
+.month-section
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.month-section__month
+{
+    min-width: var(--year-nav);
+
+    position: sticky;
+    top: 55vh;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 68px;
+
+    text-align: center;
+}
+
+.month-section__table {
+    width: 100%;
+
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(7, 1fr);
+    grid-row-gap: 30px;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    .month-section__month
+    {
+        color: #ffffff;
+    }
+}
