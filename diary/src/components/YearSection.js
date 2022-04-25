@@ -1,7 +1,6 @@
 import './YearSection.css';
 import MonthSection from './MonthSection';
 import {useEffect, useRef, useState} from "react";
-import {getMonthName} from "../generateYear";
 
 function YearSection({year, months})
 {
@@ -46,7 +45,8 @@ function YearSection({year, months})
                 return (
                     <MonthSection
                         key={month}
-                        month={getMonthName(month)}
+                        year={year}
+                        month={month}
                         days={days}
                         firstDayShift={firstDayShift - 1 === -1 ? 6 : firstDayShift - 1}
                         lastDayShift={lastDayShift - 1 === -1 ? 6 : lastDayShift - 1}

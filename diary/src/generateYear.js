@@ -34,4 +34,9 @@ function getMonthName(month)
     return monthNames[month];
 }
 
-export {getMonthName, generateYear};
+function getDateName(date)
+{
+    return getMonthName(date.getMonth()) + " " + date.getDate() + " / " + date.getFullYear();
+}
+
+export {getMonthName, generateYear, getDateName};

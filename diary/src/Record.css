@@ -1,0 +1,88 @@
+.record
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.record__container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    width: fit-content;
+}
+
+.record__header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 50px 0 30px 0;
+}
+
+.record__date
+{
+    font-family: inherit;
+    font-size: 36px;
+}
+
+.record__input
+{
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    border: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    background: white;
+    text-align: left;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.record__input::placeholder
+{
+    font-style: italic;
+    color: #bfbfbf;
+}
+
+.record__input_title
+{
+    border: 5px solid #000000;
+    font-size: 36px;
+    width: 350px;
+    height: 60px;
+    padding-left: 12px;
+    font-weight: 700;
+
+}
+
+.record__input_text
+{
+    border: 3px solid #000000;
+    resize: none;
+    font-size: 30px;
+    width: 79vw;
+    height: 70vh;
+    margin-bottom: 28px;
+    padding-top: 10px;
+    padding-left: 12px;
+}
+
+.record__input_submit
+{
+    background: black;
+    color: white;
+    width: 250px;
+    height: 60px;
+    text-align: center;
+    font-size: 36px;
+}

@@ -1,7 +1,7 @@
 import pencil from './pencil_icon.svg';
 import './DayCard.css';
 
-function DayCard({dayNum, heading, text, style})
+function DayCard({year, month, dayNum, heading, text, style})
 {
     return (
         <div className="day-card" style={style}>

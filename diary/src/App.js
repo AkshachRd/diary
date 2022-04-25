@@ -6,7 +6,8 @@ import React from "react";
 
 const years = [generateYear(new Date().getFullYear())];
 
-function App() {
+function App()
+{
   return (
       <div className="App">
           {
