@@ -1,10 +1,19 @@
 import './MonthSection.css';
-import DayCard from "./DayCard";
-import {getMonthName} from "../generateYear";
+import DayCard from "../DayCard/DayCard";
+import {getMonthName, Month} from "../../generateYear";
 
-function monthSection({year, month, days, firstDayShift, lastDayShift})
+interface MonthSectionProps
 {
-    const daysNumber = days.length + firstDayShift + (6 - lastDayShift);
+    year: number;
+    monthNum: number;
+    month: Month;
+    firstDayShift: number;
+    lastDayShift: number;
+}
+
+function monthSection({year, monthNum, month, firstDayShift, lastDayShift}: MonthSectionProps)
+{
+    const daysNumber = month.length + firstDayShift + (6 - lastDayShift);
     const rowsNumber = (daysNumber / 7 >> 0);
     const monthTableStyle = {
         gridTemplateRows: '1fr '.repeat(rowsNumber + 1)
@@ -15,18 +24,19 @@ function monthSection({year, month, days, firstDayShift, lastDayShift})
 
     return (
         <div className="month-section">
-            <span className="month-section__month">{getMonthName(month)}</span>
+            <span className="month-section__month">{getMonthName(monthNum)}</span>
             <div className="month-section__table" style={monthTableStyle}>
                 {
-                    days.map((day, i) => (
+                    month.map((day, i) => (
                         <DayCard
                             key={i}
                             year={year}
-                            month={month}
+                            monthNum={monthNum}
                             dayNum={i + 1}
+                            id={day["id"]}
                             heading={day["heading"]}
                             text={day["text"]}
-                            style={i === 0 ? monthTableStart : null}
+                            style={i === 0 ? monthTableStart : undefined}
                         />
                     ))
                 }

@@ -1,20 +1,25 @@
-import {useState} from "react";
+import {FormEvent, useState} from "react";
 import "./Record.css";
-import {getDateName} from "./generateYear";
+import {getDateName} from "../../generateYear";
+import {useParams} from "react-router-dom";
 
-function Record({date})
+function Record()
 {
+    let params = useParams();
+    const yearNum = Number(params.year);
+    const monthNum = Number(params.month) - 1;
+    const dayNum = Number(params.day);
+
     const [title, titleSet] = useState("");
     const [text, textSet] = useState("");
 
-    const handleRecord = (e) => {
-        alert(title + " " + text);
+    const useRecord = (e: FormEvent) => {
         e.preventDefault();
     }
 
     return (
         <div className="record">
-            <form onSubmit={handleRecord} className="record__container">
+            <form onSubmit={useRecord} className="record__container">
                 <div className="record__header">
                     <input
                         type="text"
@@ -24,7 +29,7 @@ function Record({date})
                         className="record__input record__input_title"
                     />
                     <span
-                        className="record__date">{getDateName(date)}</span>
+                        className="record__date">{getDateName(new Date(yearNum, monthNum, dayNum))}</span>
                 </div>
                 <textarea
                     placeholder="Type here..."
