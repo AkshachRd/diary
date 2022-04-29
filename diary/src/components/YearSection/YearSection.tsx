@@ -1,7 +1,7 @@
 import './YearSection.css';
 import MonthSection from '../MonthSection/MonthSection';
 import {useEffect, useRef, useState} from "react";
-import {Year} from "../../generateYear";
+import {Year} from "../../types/Year";
 
 interface YearSectionProps extends Year {}
 

@@ -3,7 +3,12 @@ import "./Record.css";
 import {getDateName} from "../../generateYear";
 import {useParams} from "react-router-dom";
 
-function Record()
+interface RecordProps
+{
+    onChange: (date: Date, title: string, text: string) => void;
+}
+
+function Record({ onChange }: RecordProps)
 {
     let params = useParams();
     const yearNum = Number(params.year);
@@ -14,6 +19,7 @@ function Record()
     const [text, textSet] = useState("");
 
     const useRecord = (e: FormEvent) => {
+        onChange(new Date(yearNum, monthNum, dayNum), title, text);
         e.preventDefault();
     }
 

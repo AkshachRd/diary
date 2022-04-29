@@ -5,6 +5,13 @@ import App from './App';
 import Record from "./components/Record/Record";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {generateYear} from "./generateYear";
+
+const years = [generateYear(new Date().getFullYear())];
+
+const changeRecord = (date: Date, title: string, text: string) => {
+    alert(`${date.toDateString()}\n${title}\n${text}`)
+}
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -13,8 +20,8 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/:year/:month/:day" element={<Record />} />
+                <Route path="/" element={<App years={years} />} />
+                <Route path="/:year/:month/:day" element={<Record onChange={changeRecord} />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

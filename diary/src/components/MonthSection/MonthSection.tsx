@@ -1,6 +1,7 @@
 import './MonthSection.css';
 import DayCard from "../DayCard/DayCard";
-import {getMonthName, Month} from "../../generateYear";
+import {getMonthName} from "../../generateYear";
+import {Month} from "../../types/Month";
 
 interface MonthSectionProps
 {

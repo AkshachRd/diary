@@ -1,12 +1,15 @@
 import './App.css';
 import Header from "./components/Header/Header";
 import YearSection from "./components/YearSection/YearSection";
-import {generateYear} from "./generateYear";
 import React from "react";
+import {Year} from "./types/Year";
 
-const years = [generateYear(new Date().getFullYear())];
+interface AppProps
+{
+    years: Array<Year>;
+}
 
-function App()
+function App({ years }: AppProps)
 {
   return (
       <div className="App">

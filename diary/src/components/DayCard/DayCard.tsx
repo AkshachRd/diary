@@ -1,7 +1,7 @@
 import pencil from './pencil_icon.svg';
 import './DayCard.css';
 import CSS from 'csstype';
-import {Day} from "../../generateYear";
+import {Day} from "../../types/Day";
 
 interface DayCardProps extends Day
 {

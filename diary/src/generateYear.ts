@@ -1,17 +1,6 @@
-interface Year
-{
-    yearNum: number;
-    months: Array<Month>;
-}
-
-type Month = Array<Day>;
-
-interface Day
-{
-    id: string | null;
-    heading: string;
-    text: string;
-}
+import {Year} from "./types/Year";
+import {Day} from "./types/Day";
+import {Month} from "./types/Month";
 
 function generateYear(year: number): Year
 {
@@ -54,19 +43,4 @@ function getDateName(date: Date): string
     return getMonthName(date.getMonth()) + " " + date.getDate() + " / " + date.getFullYear();
 }
 
-function getYear(years: Array<Year>, yearNum: number): Year | null
-{
-    const result = years.find(
-        (year) => year.yearNum === yearNum
-    );
-
-    if (!result)
-    {
-        return null;
-    }
-
-    return result;
-}
-
-export {getMonthName, generateYear, getDateName, getYear};
-export type { Day, Month, Year };
+export {getMonthName, generateYear, getDateName};
