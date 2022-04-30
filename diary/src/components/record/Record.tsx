@@ -20,7 +20,7 @@ function Record({ onChange }: RecordProps)
     const [title, titleSet] = useState("");
     const [text, textSet] = useState("");
 
-    const handleRecord = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onChange(new Date(yearNum, monthNum, dayNum), title, text);
         navigateToMain();
@@ -28,7 +28,7 @@ function Record({ onChange }: RecordProps)
 
     return (
         <div className="record">
-            <form onSubmit={handleRecord} className="record__container">
+            <form onSubmit={handleSubmit} className="record__container">
                 <div className="record__header">
                     <input
                         type="text"
@@ -46,7 +46,10 @@ function Record({ onChange }: RecordProps)
                     onChange={(e) => textSet(e.target.value)}
                     className="record__input record__input_text"
                 />
-                <input type="submit" value="Apply" className="record__input record__input_submit"/>
+                <div className="record__buttons">
+                    <button className="record__input record__input_cancel" onClick={navigateToMain}>Cancel</button>
+                    <input type="submit" value="Apply" className="record__input record__input_submit"/>
+                </div>
             </form>
         </div>
     );

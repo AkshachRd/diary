@@ -10,7 +10,7 @@ function useNavigateToMain(): () => void
 function useNavigateToRecord(date: Date): () => void
 {
     const navigate = useNavigate();
-    const recordPath = `/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDay()}`;
+    const recordPath = `/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     return () => navigate(recordPath);
 }
 
