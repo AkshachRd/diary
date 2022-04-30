@@ -1,6 +1,6 @@
-import {Year} from "./types/Year";
-import {Day} from "./types/Day";
-import {Month} from "./types/Month";
+import {Year} from "../types/year";
+import {Day} from "../types/day";
+import {Month} from "../types/month";
 
 function generateYear(year: number): Year
 {

@@ -1,7 +1,8 @@
 import './MonthSection.css';
-import DayCard from "../DayCard/DayCard";
-import {getMonthName} from "../../generateYear";
-import {Month} from "../../types/Month";
+import DayCard from "../dayCard/DayCard";
+import {getMonthName} from "../../services/generateYear";
+import {Month} from "../../types/month";
+import {useEffect, useRef} from "react";
 
 interface MonthSectionProps
 {
@@ -12,7 +13,7 @@ interface MonthSectionProps
     lastDayShift: number;
 }
 
-function monthSection({year, monthNum, month, firstDayShift, lastDayShift}: MonthSectionProps)
+function MonthSection({year, monthNum, month, firstDayShift, lastDayShift}: MonthSectionProps)
 {
     const daysNumber = month.length + firstDayShift + (6 - lastDayShift);
     const rowsNumber = (daysNumber / 7 >> 0);
@@ -23,15 +24,25 @@ function monthSection({year, monthNum, month, firstDayShift, lastDayShift}: Mont
         gridColumnStart: firstDayShift + 1
     }
 
+    const monthRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!monthRef.current) throw Error("monthRef is not assigned");
+
+        if (new Date().getMonth() === monthNum)
+        {
+            monthRef.current.scrollIntoView({behavior: "smooth"});
+        }
+    }, [monthNum]);
+
     return (
-        <div className="month-section">
+        <div ref={monthRef} className="month-section">
             <span className="month-section__month">{getMonthName(monthNum)}</span>
             <div className="month-section__table" style={monthTableStyle}>
                 {
                     month.map((day, i) => (
                         <DayCard
                             key={i}
-                            year={year}
+                            yearNum={year}
                             monthNum={monthNum}
                             dayNum={i + 1}
                             id={day["id"]}
@@ -46,4 +57,4 @@ function monthSection({year, monthNum, month, firstDayShift, lastDayShift}: Mont
     )
 }
 
-export default monthSection;
+export default MonthSection;

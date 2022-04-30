@@ -1,7 +1,8 @@
 import {FormEvent, useState} from "react";
 import "./Record.css";
-import {getDateName} from "../../generateYear";
+import {getDateName} from "../../services/generateYear";
 import {useParams} from "react-router-dom";
+import {useNavigateToMain} from "../../services/navigate";
 
 interface RecordProps
 {
@@ -11,6 +12,7 @@ interface RecordProps
 function Record({ onChange }: RecordProps)
 {
     let params = useParams();
+    const navigateToMain = useNavigateToMain();
     const yearNum = Number(params.year);
     const monthNum = Number(params.month) - 1;
     const dayNum = Number(params.day);
@@ -18,14 +20,15 @@ function Record({ onChange }: RecordProps)
     const [title, titleSet] = useState("");
     const [text, textSet] = useState("");
 
-    const useRecord = (e: FormEvent) => {
-        onChange(new Date(yearNum, monthNum, dayNum), title, text);
+    const handleRecord = (e: FormEvent) => {
         e.preventDefault();
+        onChange(new Date(yearNum, monthNum, dayNum), title, text);
+        navigateToMain();
     }
 
     return (
         <div className="record">
-            <form onSubmit={useRecord} className="record__container">
+            <form onSubmit={handleRecord} className="record__container">
                 <div className="record__header">
                     <input
                         type="text"

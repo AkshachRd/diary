@@ -1,4 +1,4 @@
-import {Month} from "./Month";
+import {Month} from "./month";
 
 interface Year {
     yearNum: number;

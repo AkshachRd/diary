@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Record from "./components/Record/Record";
+import Record from "./components/record/Record";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {generateYear} from "./generateYear";
+import {generateYear} from "./services/generateYear";
 
 const years = [generateYear(new Date().getFullYear())];
 

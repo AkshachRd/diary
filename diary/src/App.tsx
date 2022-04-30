@@ -1,8 +1,8 @@
 import './App.css';
-import Header from "./components/Header/Header";
-import YearSection from "./components/YearSection/YearSection";
+import Header from "./components/header/Header";
+import YearSection from "./components/yearSection/YearSection";
 import React from "react";
-import {Year} from "./types/Year";
+import {Year} from "./types/year";
 
 interface AppProps
 {

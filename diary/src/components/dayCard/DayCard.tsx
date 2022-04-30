@@ -1,20 +1,23 @@
 import pencil from './pencil_icon.svg';
 import './DayCard.css';
 import CSS from 'csstype';
-import {Day} from "../../types/Day";
+import {Day} from "../../types/day";
+import {useNavigateToRecord} from "../../services/navigate";
 
 interface DayCardProps extends Day
 {
-    year: number;
+    yearNum: number;
     monthNum: number;
     dayNum: number;
     style: CSS.Properties | undefined;
 }
 
-function DayCard({year, monthNum, dayNum, id, heading, text, style}: DayCardProps)
+function DayCard({yearNum, monthNum, dayNum, id, heading, text, style}: DayCardProps)
 {
+    const navigateToRecord = useNavigateToRecord(new Date(yearNum, monthNum, dayNum));
+
     return (
-        <div className="day-card" style={style}>
+        <div className="day-card" style={style} onClick={navigateToRecord}>
             <div className="day-card__container">
                 <span className="day-card__num">{dayNum}</span>
             </div>
