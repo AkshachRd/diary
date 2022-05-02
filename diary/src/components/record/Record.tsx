@@ -26,18 +26,20 @@ function Record()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        if (!day.id)
+        if (title || text)
         {
-            dispatch(changeDayId({
+            if (!day.id) {
+                dispatch(changeDayId({
+                    date: date,
+                    id: guidGenerator()
+                }));
+            }
+            dispatch(changeDayContent({
                 date: date,
-                id: guidGenerator()
+                heading: title,
+                text: text
             }));
         }
-        dispatch(changeDayContent({
-            date: date,
-            heading: title,
-            text: text
-        }));
 
         navigateToMain();
     }
