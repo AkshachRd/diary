@@ -5,25 +5,22 @@ import App from './App';
 import Record from "./components/record/Record";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {generateYear} from "./services/generateYear";
-
-const years = [generateYear(new Date().getFullYear())];
-
-const changeRecord = (date: Date, title: string, text: string) => {
-    alert(`${date.toDateString()}\n${title}\n${text}`)
-}
+import {Provider} from "react-redux";
+import store from "./app/store";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App years={years} />} />
-                <Route path="/:year/:month/:day" element={<Record onChange={changeRecord} />} />
-            </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<App />} />
+                    <Route path="/:year/:month/:day" element={<Record />} />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>
 );
 

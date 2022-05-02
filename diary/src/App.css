@@ -2,11 +2,6 @@
     color-scheme: light dark;
 }
 
-.App__container
-{
-    margin-top: 190px;
-}
-
 @media (prefers-color-scheme: dark) {
     body
     {

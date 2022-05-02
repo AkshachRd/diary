@@ -3,26 +3,42 @@ import "./Record.css";
 import {getDateName} from "../../services/generateYear";
 import {useParams} from "react-router-dom";
 import {useNavigateToMain} from "../../services/navigate";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {changeDayContent, changeDayId, selectDay} from "../calendar/calendarSlice";
+import {guidGenerator} from "../../services/guidGenerator";
 
-interface RecordProps
+function Record()
 {
-    onChange: (date: Date, title: string, text: string) => void;
-}
-
-function Record({ onChange }: RecordProps)
-{
-    let params = useParams();
-    const navigateToMain = useNavigateToMain();
+    const params = useParams();
     const yearNum = Number(params.year);
     const monthNum = Number(params.month) - 1;
     const dayNum = Number(params.day);
+    const navigateToMain = useNavigateToMain();
 
-    const [title, titleSet] = useState("");
-    const [text, textSet] = useState("");
+    const date = new Date(yearNum, monthNum, dayNum);
+
+    const day = useAppSelector((state) => selectDay(state, date));
+    const dispatch = useAppDispatch();
+
+    const [title, titleSet] = useState(day.heading);
+    const [text, textSet] = useState(day.text);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        onChange(new Date(yearNum, monthNum, dayNum), title, text);
+
+        if (!day.id)
+        {
+            dispatch(changeDayId({
+                date: date,
+                id: guidGenerator()
+            }));
+        }
+        dispatch(changeDayContent({
+            date: date,
+            heading: title,
+            text: text
+        }));
+
         navigateToMain();
     }
 
