@@ -1,58 +1,38 @@
 import './MonthSection.css';
-import DayCard from "../dayCard/DayCard";
-import {getMonthName} from "../../services/generateYear";
 import {Month} from "../../types/month";
-import {useEffect, useRef} from "react";
+import {getMonthName} from "../../services/generateYear";
+import DayCard from "../dayCard/DayCard";
+import React from "react";
 
 interface MonthSectionProps
 {
-    year: number;
+    yearNum: number;
     monthNum: number;
     month: Month;
-    firstDayShift: number;
-    lastDayShift: number;
+    selectedDayDate: Date;
+    setSelectedDayDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-function MonthSection({year, monthNum, month, firstDayShift, lastDayShift}: MonthSectionProps)
+function MonthSection({yearNum, monthNum, month, selectedDayDate, setSelectedDayDate}: MonthSectionProps)
 {
-    const daysNumber = month.length + firstDayShift + (6 - lastDayShift);
-    const rowsNumber = (daysNumber / 7 >> 0);
-    const monthTableStyle = {
-        gridTemplateRows: '1fr '.repeat(rowsNumber + 1)
-    };
-    const monthTableStart = {
-        gridColumnStart: firstDayShift + 1
-    }
-
-    const monthRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (!monthRef.current) throw Error("monthRef is not assigned");
-
-        if (new Date().getMonth() === monthNum)
-        {
-            monthRef.current.scrollIntoView({behavior: "smooth"});
-        }
-    }, [monthNum]);
-
     return (
-        <div ref={monthRef} className="month-section">
-            <span className="month-section__month">{getMonthName(monthNum)}</span>
-            <div className="month-section__table" style={monthTableStyle}>
+        <div className="month-section">
+            <div className="month-section__days" style={{gridTemplateColumns: "1fr ".repeat(month.length)}}>
                 {
-                    month.map((day, i) => (
+                    month.map((day, dayNum) =>
                         <DayCard
-                            key={i}
-                            yearNum={year}
+                            yearNum={yearNum}
                             monthNum={monthNum}
-                            dayNum={i + 1}
-                            id={day["id"]}
-                            heading={day["heading"]}
-                            text={day["text"]}
-                            style={i === 0 ? monthTableStart : undefined}
+                            dayNum={dayNum + 1}
+                            selected={selectedDayDate.getMonth() === monthNum
+                                ? selectedDayDate.getDate() === dayNum + 1
+                                : false}
+                            onClick={() => setSelectedDayDate(new Date(yearNum, monthNum, dayNum + 1))}
                         />
-                    ))
+                    )
                 }
             </div>
+            <span className="month-section__name">{getMonthName(monthNum)}</span>
         </div>
     )
 }

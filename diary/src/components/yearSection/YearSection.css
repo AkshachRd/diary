@@ -10,32 +10,29 @@
 
 .year-section__container
 {
-    height: 56px;
-
-    display: grid;
-    grid-template-columns: var(--year-nav) 1fr;
+    height: 150px;
+    display: flex;
     align-items: center;
 
     text-align: center;
     background: white;
 
-    position: sticky;
-    top: 169px;
+    border-top: 5px solid #000000;
+    border-bottom: 5px solid #000000;
 }
 
-.year-section__year
+.year-section__month
 {
-    min-width: var(--year-nav);
+    display: flex;
+    align-items: center;
+}
 
-    grid-column-start: 1;
-    grid-row-start: 1;
-
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 72px;
-    line-height: 94px;
-
-    transition: transform 0.7s ease 0.1s;
+.year-section__month-border
+{
+    display: inline-block;
+    border-left: 5px solid #000000;
+    margin: 0 10px;
+    height: 75px;
 }
 
 .year-section__line

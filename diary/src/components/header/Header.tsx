@@ -8,15 +8,6 @@ function Header()
             <div className="header__container">
                 <input type="image" src={profile_icon} className="profile__button" alt="Profile Icon"/>
             </div>
-            <div className="days-of-week">
-                <span className="days-of-week__day">Monday</span>
-                <span className="days-of-week__day">Tuesday</span>
-                <span className="days-of-week__day">Wednesday</span>
-                <span className="days-of-week__day">Thursday</span>
-                <span className="days-of-week__day">Friday</span>
-                <span className="days-of-week__day">Saturday</span>
-                <span className="days-of-week__day">Sunday</span>
-            </div>
         </div>
     )
 }

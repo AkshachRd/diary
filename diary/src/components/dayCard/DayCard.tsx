@@ -1,38 +1,29 @@
-import pencil from './pencil_icon.svg';
 import './DayCard.css';
-import CSS from 'csstype';
-import {Day} from "../../types/day";
-import {useNavigateToRecord} from "../../services/navigate";
+import {useEffect, useRef} from "react";
 
-interface DayCardProps extends Day
+interface DayCardProps
 {
     yearNum: number;
     monthNum: number;
     dayNum: number;
-    style: CSS.Properties | undefined;
+    selected: boolean;
+    onClick: () => void
 }
 
-function DayCard({yearNum, monthNum, dayNum, id, heading, text, style}: DayCardProps)
+function DayCard({yearNum, monthNum, dayNum, selected, onClick}: DayCardProps)
 {
-    const navigateToRecord = useNavigateToRecord(new Date(yearNum, monthNum, dayNum));
+    const dayCardRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!dayCardRef.current) throw Error("dayCardRef is not assigned");
+        if (selected) dayCardRef.current.scrollIntoView({behavior: "smooth", inline: "center"});
+    }, [selected]);
 
     return (
-        <div className="day-card" style={style} onClick={navigateToRecord}>
-            <div className="day-card__container">
-                <span className="day-card__num">{dayNum}</span>
-            </div>
-
-            {
-                id ?
-                <div className="day-card__paragraph">
-                    <div className="day-card__heading">{heading}</div>
-                    <div className="day-card__text">{text}</div>
-                </div>
-                :
-                <div className="day-card__img">
-                    <img src={pencil} alt="Pencil Icon"/>
-                </div>
-            }
+        <div className="day-card" onClick={onClick}>
+            <div ref={dayCardRef} className="day-card__container"
+                 style={{borderLeft: selected ? "5px solid #000000" : "3px solid #000000"}}
+            />
         </div>
     )
 }

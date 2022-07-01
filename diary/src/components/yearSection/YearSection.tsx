@@ -1,64 +1,40 @@
 import './YearSection.css';
 import MonthSection from '../monthSection/MonthSection';
-import {useEffect, useRef, useState} from "react";
 import {Year} from "../../types/year";
+import React from "react";
 
-interface YearSectionProps extends Year {}
-
-function YearSection({yearNum, months}: YearSectionProps)
+interface YearSectionProps extends Year
 {
-    const [offset, setOffset] = useState(0);
-    const yearRef = useRef<HTMLSpanElement>(null);
-    const lineRef = useRef<HTMLHRElement>(null);
+    selectedDayDate: Date;
+    setSelectedDayDate: React.Dispatch<React.SetStateAction<Date>>;
+}
 
-    useEffect(() => {
-        const onScroll = () => {
-            if (!yearRef.current) throw Error("yearRef is not assigned");
-            if (!lineRef.current) throw Error("yearRef is not assigned");
-
-            if (offset >= 60)
-            {
-                yearRef.current.style.transform = 'translateY(30vh)';
-
-                lineRef.current.style.gridColumn = "1 / 3";
-                lineRef.current.style.gridRowStart = "1";
-            }
-            else
-            {
-                yearRef.current.style.transform = 'translateY(0)';
-
-                lineRef.current.style.gridColumn = "2 / 3";
-            }
-
-            setOffset(window.pageYOffset);
-        };
-        window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, [offset]);
-
+function YearSection({yearNum, months, selectedDayDate, setSelectedDayDate}: YearSectionProps)
+{
     return (
         <div className="year-section">
             <div className="year-section__container">
-                <span ref={yearRef} className="year-section__year">{yearNum}</span>
-                <hr ref={lineRef} className="year-section__line"/>
-            </div>
             {
                 months.map((month, monthNum) => {
-                const firstDayShift = new Date(yearNum, monthNum, 1).getDay();
-                const lastDayShift = new Date(yearNum, monthNum + 1, 0).getDay();
+                    const yearEnd = monthNum === 11;
 
-                return (
-                    <MonthSection
-                        key={monthNum}
-                        year={yearNum}
-                        monthNum={monthNum}
-                        month={month}
-                        firstDayShift={firstDayShift - 1 === -1 ? 6 : firstDayShift - 1}
-                        lastDayShift={lastDayShift - 1 === -1 ? 6 : lastDayShift - 1}
-                    />
-                )})
+                    return (
+                        <div className="year-section__month">
+                            <MonthSection
+                                key={monthNum}
+                                yearNum={yearNum}
+                                monthNum={monthNum}
+                                month={month}
+                                selectedDayDate={selectedDayDate}
+                                setSelectedDayDate={setSelectedDayDate}
+                            />
+                            {!yearEnd && <div className="year-section__month-border"/>}
+                        </div>
+                    )
+                })
             }
+            </div>
+            <span className="year-section__year">{yearNum}</span>
         </div>
     )
 }

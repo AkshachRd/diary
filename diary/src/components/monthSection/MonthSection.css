@@ -5,9 +5,7 @@
 
 .month-section
 {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    width: 842px;
 }
 
 .month-section__month
@@ -25,13 +23,9 @@
     text-align: center;
 }
 
-.month-section__table {
-    width: 100%;
-
+.month-section__days
+{
     display: grid;
-    justify-items: center;
-    grid-template-columns: repeat(7, 1fr);
-    grid-row-gap: 30px;
 }
 
 @media (prefers-color-scheme: dark)
