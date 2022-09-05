@@ -1,0 +1,14 @@
+@import "./normalize.scss";
+@import "./vars.scss";
+
+:root
+{
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    body
+    {
+        background: var(--color-dark);
+    }
+}

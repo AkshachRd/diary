@@ -1,0 +1,101 @@
+.day-card
+{
+    width: 160px;
+    height: 200px;
+
+    background: #ffffff;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.day-card__container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.day-card__num
+{
+    width: 70px;
+    height: 70px;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 68px;
+
+    text-align: center;
+    color: #000000;
+}
+
+.day-card__paragraph
+{
+    text-align: start;
+
+    margin: 0 8px 8px 9px;
+}
+
+.day-card__heading
+{
+    width: 137px;
+    height: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 13px;
+
+    color: #000000;
+}
+
+.day-card__text
+{
+    width: 137px;
+    height: 100px;
+
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 10px;
+
+    color: #404040;
+}
+
+.day-card__img
+{
+    height: 124px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    .day-card
+    {
+        background: #191919;
+        border-color: #ffffff;
+    }
+
+    .day-card__num, .day-card__heading, .day-card__text
+    {
+        color: #ffffff;
+    }
+
+    .day-card__img
+    {
+        filter: invert(100%);
+    }
+}

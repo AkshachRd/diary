@@ -1,26 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import Record from "./components/record/Record";
+import './index.scss';
+import App from 'app';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Provider} from "react-redux";
-import store from "./app/store";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<App />} />
-                    <Route path="/:year/:month/:day" element={<Record />} />
-                </Routes>
-            </BrowserRouter>
-        </Provider>
+        <App />
     </React.StrictMode>
 );
 
